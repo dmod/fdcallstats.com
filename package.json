@@ -1,8 +1,9 @@
 {
-  "name": "here",
+  "name": "fdcallstats",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "pg": "^7.3.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-scripts": "1.0.14"
