@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-console.log("Test prior to PG");
+console.log("index.js running...");
 
+/* Commenting out while getting PG to work
 const { Client } = require('pg');
 
 const client = new Client({
@@ -20,11 +21,35 @@ client.query('SELECT table_schema,table_name FROM information_schema.tables;', (
   }
   client.end();
 });
+*/
 
-const element = (
-    <div>
-    <h1>Hello, world!</h1>
-    </div>
-);
+const app = {
+  title: 'Random word'
+}
 
-ReactDOM.render(element, document.getElementById('root'));
+const randomCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q'];
+const maxNumOfLetters = 10;
+
+const makeASillyRandomWord = () => {
+  const randomLength = Math.floor(Math.random() * maxNumOfLetters) + 1;
+
+  let randomWord = "";
+  for (let index = 0; index < randomLength; index++) {
+    const randomIndex = Math.floor(Math.random() * randomCharacters.length);
+    randomWord += randomCharacters[randomIndex];
+  }
+  return randomWord;
+};
+
+const render = () => {
+  const template = (
+      <div id="content">
+          <h1>{app.title}</h1>
+          <h3>{makeASillyRandomWord()}</h3>
+          <button onClick={render}>Do it again...</button>
+      </div>
+  );
+  ReactDOM.render(template, document.getElementById('root'));
+};
+
+render();
