@@ -6,6 +6,11 @@ export default {
       icon: 'icon-speedometer',
     },
     {
+      name: 'View Calls',
+      url: '/vcalls',
+      icon: 'icon-fire',
+    },
+    {
       title: true,
       name: 'Theme',
       wrapper: {            // optional wrapper object
@@ -139,11 +144,6 @@ export default {
           url: '/buttons/button-groups',
           icon: 'icon-cursor',
         },
-        {
-          name: 'Brand Buttons',
-          url: '/buttons/brand-buttons',
-          icon: 'icon-cursor',
-        },
       ],
     },
     {
@@ -164,11 +164,6 @@ export default {
             variant: 'info',
             text: 'NEW',
           },
-        },
-        {
-          name: 'Flags',
-          url: '/icons/flags',
-          icon: 'icon-star',
         },
         {
           name: 'Font Awesome',
@@ -207,15 +202,6 @@ export default {
           icon: 'icon-bell',
         },
       ],
-    },
-    {
-      name: 'Widgets',
-      url: '/widgets',
-      icon: 'icon-calculator',
-      badge: {
-        variant: 'info',
-        text: 'NEW',
-      },
     },
     {
       divider: true,
