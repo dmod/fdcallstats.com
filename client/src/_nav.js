@@ -6,28 +6,22 @@ export default {
       icon: 'icon-speedometer',
     },
     {
-      name: 'View Calls',
-      url: '/vcalls',
-      icon: 'icon-fire',
-    },
-    {
       title: true,
-      name: 'Theme',
+      name: 'Calls',
       wrapper: {            // optional wrapper object
         element: '',        // required valid HTML5 element tag
         attributes: {}        // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
       },
-      class: ''             // optional class names space delimited list for title item ex: "text-center"
     },
     {
-      name: 'Colors',
-      url: '/theme/colors',
-      icon: 'icon-drop',
+      name: 'New Call',
+      url: '/newcall',
+      icon: 'icon-doc',
     },
     {
-      name: 'Typography',
-      url: '/theme/typography',
-      icon: 'icon-pencil',
+      name: 'View Calls',
+      url: '/vcalls',
+      icon: 'icon-fire',
     },
     {
       title: true,
@@ -93,16 +87,6 @@ export default {
           icon: 'icon-puzzle',
         },
         {
-          name: 'Popovers',
-          url: '/base/popovers',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'Progress Bar',
-          url: '/base/progress-bar',
-          icon: 'icon-puzzle',
-        },
-        {
           name: 'Switches',
           url: '/base/switches',
           icon: 'icon-puzzle',
@@ -123,33 +107,6 @@ export default {
           icon: 'icon-puzzle',
         },
       ],
-    },
-    {
-      name: 'Buttons',
-      url: '/buttons',
-      icon: 'icon-cursor',
-      children: [
-        {
-          name: 'Buttons',
-          url: '/buttons/buttons',
-          icon: 'icon-cursor',
-        },
-        {
-          name: 'Button dropdowns',
-          url: '/buttons/button-dropdowns',
-          icon: 'icon-cursor',
-        },
-        {
-          name: 'Button groups',
-          url: '/buttons/button-groups',
-          icon: 'icon-cursor',
-        },
-      ],
-    },
-    {
-      name: 'Charts',
-      url: '/charts',
-      icon: 'icon-pie-chart',
     },
     {
       name: 'Icons',
@@ -178,28 +135,6 @@ export default {
           name: 'Simple Line Icons',
           url: '/icons/simple-line-icons',
           icon: 'icon-star',
-        },
-      ],
-    },
-    {
-      name: 'Notifications',
-      url: '/notifications',
-      icon: 'icon-bell',
-      children: [
-        {
-          name: 'Alerts',
-          url: '/notifications/alerts',
-          icon: 'icon-bell',
-        },
-        {
-          name: 'Badges',
-          url: '/notifications/badges',
-          icon: 'icon-bell',
-        },
-        {
-          name: 'Modals',
-          url: '/notifications/modals',
-          icon: 'icon-bell',
         },
       ],
     },

@@ -10,8 +10,6 @@ import {
   Navbars,
   Navs,
   Paginations,
-  Popovers,
-  ProgressBar,
   Switches,
   Tables,
   Tabs,
@@ -28,6 +26,7 @@ import { Colors, Typography } from './Theme';
 import Widgets from './Widgets';
 
 import VCalls from './VCalls';
+import NewCall from './NewCall';
 
 export {
   Badges,
@@ -55,8 +54,6 @@ export {
   Widgets,
   Jumbotrons,
   Switches,
-  ProgressBar,
-  Popovers,
   Navs,
   Navbars,
   ListGroups,
@@ -67,6 +64,7 @@ export {
   Cards,
   Breadcrumbs,
   Paginations,
-  VCalls
+  VCalls,
+  NewCall
 };
 

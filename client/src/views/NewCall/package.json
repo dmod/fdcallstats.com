@@ -1,0 +1,6 @@
+{
+  "name": "NewCall",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./NewCall.js"
+}
