@@ -14,6 +14,7 @@ import {
   AppSidebarMinimizer,
   AppSidebarNav,
 } from '@coreui/react';
+
 // sidebar nav config
 import navigation from '../../_nav';
 // routes config

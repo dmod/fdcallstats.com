@@ -7,6 +7,11 @@ function Loading() {
   return <div>Loading...</div>;
 }
 
+const Login = Loadable({
+  loader: () => import('./views/Login'),
+  loading: Loading,
+});
+
 const Dashboard = Loadable({
   loader: () => import('./views/Dashboard'),
   loading: Loading,
@@ -50,6 +55,7 @@ const NewCall = Loadable({
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
+  { path: '/login', name: 'Login', component: Login },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
