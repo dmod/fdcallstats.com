@@ -9,9 +9,13 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 // Answer API requests.
-app.get('/api', function (req, res) {
-    res.set('Content-Type', 'application/json');
-    res.send('{"message":"Echo coming back"}');
+app.get('/api/v1/ping', function (req, res) {
+    let obj = 
+    [
+        {"id": "5", "incident_num": "2"}, 
+        {"id": "2", "incident_num": "563"}, 
+    ];
+    res.json(obj);
 });
 
 // All remaining requests return the React app, so it can handle routing.

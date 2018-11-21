@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
+import { Card, CardBody, Col, Row, Table } from 'reactstrap';
 
 class VCalls extends Component {
 
@@ -10,10 +10,10 @@ class VCalls extends Component {
       message: null,
       fetching: true
     };
-}
+  }
 
   componentDidMount() {
-    fetch('/api')
+    fetch('/api/v1/ping')
       .then(response => {
         if (!response.ok) {
           throw new Error(`status ${response.status}`);
@@ -23,7 +23,7 @@ class VCalls extends Component {
       })
       .then(json => {
         this.setState({
-          message: json.message,
+          message: json,
           fetching: false
         });
       }).catch(e => {
@@ -41,50 +41,25 @@ class VCalls extends Component {
         <Row>
           <Col>
             <Card>
-              <CardHeader>
-                <i className="fa fa-align-justify"></i> Combined All Table
-              </CardHeader>
               <CardBody>
                 <Table hover bordered striped responsive size="sm">
                   <thead>
-                  <tr>
-                    <th>Username</th>
-                    <th>Date registered</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                  </tr>
+                    <tr>
+                      <th>ID</th>
+                      <th>Incident Number</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Vishnu Serghei</td>
-                    <td>2012/01/01</td>
-                    <td>Member</td>
-                    <td>
-                      <Badge color="success">Active</Badge>
-                    </td>
-                  </tr>
-                  <tr>
-                  <td>API GUY SAYS: {this.state.fetching ? 'Fetching message from API' : this.state.message}</td>
-                  <td>2012/01/01</td>
-                  <td>Member</td>
-                  <td>
-                    <Badge color="success">Active</Badge>
-                  </td>
-                </tr>
+                    {!this.state.fetching && this.state.message.map(( listValue, index ) => {
+                      return (
+                        <tr key={index}>
+                          <td>{listValue.id}</td>
+                          <td>{listValue.incident_num}</td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </Table>
-                <nav>
-                  <Pagination>
-                    <PaginationItem><PaginationLink previous tag="button">Prev</PaginationLink></PaginationItem>
-                    <PaginationItem active>
-                      <PaginationLink tag="button">1</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">2</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">3</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">4</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink next tag="button">Next</PaginationLink></PaginationItem>
-                  </Pagination>
-                </nav>
               </CardBody>
             </Card>
           </Col>
