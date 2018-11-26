@@ -1,5 +1,13 @@
 const express = require('express');
 const path = require('path');
+const { Pool } = require('pg');
+
+const { DATABASE_URL } = process.env;
+
+const pool = new Pool({
+    connectionString: DATABASE_URL,
+    ssl: true
+})
 
 const PORT = process.env.PORT || 5000;
 
@@ -10,19 +18,19 @@ app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 // Answer API requests.
 app.get('/api/v1/ping', function (req, res) {
-    let obj = 
-    [
-        {"id": "5", "incident_num": "2"}, 
-        {"id": "2", "incident_num": "563"}, 
-    ];
-    res.json(obj);
+    res.json({ "response": "coming back." });
 });
 
-// All remaining requests return the React app, so it can handle routing.
-app.get('*', function(request, response) {
-response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-});
+// Answer API requests.
+app.get('/api/v1/db_q', async (req, api_response) => {
+    pool.query('SELECT * FROM public.calls', (err, db_response) => {
+        if (err) {
+            return console.error('Error executing query', err.stack)
+        }
+        api_response.json(db_response.rows);
+    })
+})
 
 app.listen(PORT, function () {
-console.error(`Node cluster worker ${process.pid}: listening on port ${PORT}`);
+    console.info(`PID ${process.pid}: listening on port ${PORT} DB: ${DATABASE_URL}`);
 });
