@@ -13,12 +13,11 @@ class VCalls extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/v1/ping')
+    fetch('/api/v1/db_q')
       .then(response => {
         if (!response.ok) {
           throw new Error(`status ${response.status}`);
         }
-        console.log(response)
         return response.json();
       })
       .then(json => {
@@ -33,7 +32,6 @@ class VCalls extends Component {
         });
       })
   }
-
 
   render() {
     return (
@@ -50,7 +48,7 @@ class VCalls extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {!this.state.fetching && this.state.message.map(( listValue, index ) => {
+                    {!this.state.fetching && this.state.message.map((listValue, index) => {
                       return (
                         <tr key={index}>
                           <td>{listValue.id}</td>
