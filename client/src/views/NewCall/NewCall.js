@@ -39,17 +39,22 @@ class NewCall extends Component {
               <CardHeader><strong>NEW</strong> Call</CardHeader>
               <CardBody>
                 <Formik
-                  initialValues={{ email: '', id: '' }}
+                  initialValues={{ id: '', address: '' }}
                   onSubmit={(values, { setSubmitting }) => {
                     setTimeout(() => {
-                      alert(JSON.stringify(values, null, 2));
+                      fetch('api/v1/add_call', {
+                        method: 'POST',
+                        headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(values, null, 2)
+                      })
                       setSubmitting(false);
                     }, 500);
                   }}
                   validationSchema={Yup.object().shape({
-                    email: Yup.string()
-                      .email()
-                      .required('Required'),
+                    id: Yup.string().required('Required'),
                   })}
                 >
                   {props => {
@@ -76,17 +81,17 @@ class NewCall extends Component {
                           onBlur={handleBlur}
                           className={errors.id && touched.id ? 'text-input error' : 'text-input'}
                         />
-                        <label htmlFor="email" style={{ display: 'block' }}>Email</label>
+                        <label htmlFor="address" style={{ display: 'block' }}>Address</label>
                         <input
-                          id="email"
-                          placeholder="Enter your email"
+                          id="address"
+                          placeholder="Address"
                           type="text"
-                          value={values.email}
+                          value={values.address}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          className={errors.email && touched.email ? 'text-input error' : 'text-input'}
+                          className={errors.address && touched.address ? 'text-input error' : 'text-input'}
                         />
-                        {errors.email && touched.email && <div className="input-feedback">{errors.email}</div>}
+                        {errors.address && touched.address && <div className="input-feedback">{errors.address}</div>}
                         <button type="submit" disabled={isSubmitting}>Submit</button>
                         <button
                           type="button"

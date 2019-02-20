@@ -13,7 +13,7 @@ class VCalls extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/v1/db_q')
+    fetch('/api/v1/all_calls')
       .then(response => {
         if (!response.ok) {
           throw new Error(`status ${response.status}`);
@@ -44,7 +44,7 @@ class VCalls extends Component {
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Incident Number</th>
+                      <th>Address</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -52,7 +52,7 @@ class VCalls extends Component {
                       return (
                         <tr key={index}>
                           <td>{listValue.id}</td>
-                          <td>{listValue.incident_num}</td>
+                          <td>{listValue.address}</td>
                         </tr>
                       );
                     })}
