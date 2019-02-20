@@ -1,31 +1,53 @@
 const express = require('express');
 const path = require('path');
-const { Pool } = require('pg');
+const mongoose = require('mongoose');
 
-const DATABASE_URL = "postgres://hxnyorqtfdpecn:99ae5c1712d26534c1d1e790369a2e69c2800c3c03f259dc8b25b4f02bbbcd6e@ec2-50-16-196-238.compute-1.amazonaws.com:5432/dcchrigblnadu1";
 const PORT = process.env.PORT || 5000;
 
-const pool = new Pool({
-    connectionString: DATABASE_URL,
-    ssl: true
-})
+const DATABASE_URL = process.env.DATABASE_URL
 
 const app = express();
 
+var callSchema = new mongoose.Schema({
+    id: String,
+    address: String
+});
+
+var Call = mongoose.model('Call', callSchema);
+
 // Priority serve any static files.
 app.use(express.static(path.resolve(__dirname, '../client/build')));
+
+app.use(express.json());
 
 app.get('/api/v1/ping', function (req, res) {
     res.json({ "response": "coming back." });
 });
 
-app.get('/api/v1/db_q', async (req, api_response) => {
-    pool.query('SELECT * FROM public.calls', (err, db_response) => {
-        if (err) {
-            return console.error('Error executing query', err.stack)
-        }
-        api_response.json(db_response.rows);
+app.get('/api/v1/all_calls', async (req, res) => {
+    mongoose.connect(DATABASE_URL, { useNewUrlParser: true });
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function () { });
+    Call.find().lean().exec(function (err, x) {
+        return res.json(x);
     })
+})
+
+app.post('/api/v1/add_call', async (req, res) => {
+    mongoose.connect(DATABASE_URL, { useNewUrlParser: true });
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function () { });
+
+    var userCall = req.body;
+
+    var NewCall = new Call({ id: userCall.id, address: userCall.address });
+
+    NewCall.save(function (err, x) {
+        if (err) return console.error(err);
+    });
+    res.status(200).json({ status: "ok" })
 })
 
 app.listen(PORT, function () {
