@@ -27,6 +27,11 @@ const NewCall = Loadable({
   loading: Loading,
 });
 
+const Units = Loadable({
+  loader: () => import('./views/Units'),
+  loading: Loading,
+});
+
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
@@ -34,6 +39,7 @@ const routes = [
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/vcalls', name: 'VCalls', component: VCalls },
   { path: '/newcall', name: 'NewCall', component: NewCall },
+  { path: '/units', name: 'Units', component: Units },
 ];
 
 export default routes;

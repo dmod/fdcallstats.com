@@ -23,5 +23,18 @@ export default {
       url: '/vcalls',
       icon: 'icon-fire',
     },
+    {
+      title: true,
+      name: 'Configuration',
+      wrapper: {            // optional wrapper object
+        element: '',        // required valid HTML5 element tag
+        attributes: {}        // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
+      },
+    },
+    {
+      name: 'Units',
+      url: '/units',
+      icon: 'icon-doc',
+    },
   ],
 };
